@@ -1,0 +1,23 @@
+# ──────────────────────────────────────────────────────────────────
+# Default configuration for Crypto-Misuse-Detection-Agent
+# ──────────────────────────────────────────────────────────────────
+
+dataset:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  processed_file: "data/processed/dataset.jsonl"
+
+preprocessing:
+  normalize_variables: false
+  remove_comments: true
+
+training:
+  test_split: 0.2
+  random_seed: 42
+
+baselines:
+  rule_based:
+    enabled: true
+  simple_classifier:
+    enabled: true
+    max_features: 5000
