@@ -4,3 +4,5 @@ scikit-learn
 javalang
 pyyaml
 tqdm
+google-genai
+python-dotenv

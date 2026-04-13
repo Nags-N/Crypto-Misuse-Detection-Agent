@@ -1,0 +1,16 @@
+You are given the following Java code snippet to review.
+
+=== CODE ===
+{code_snippet}
+=== END CODE ===
+
+A static parser has detected the following features in this code, to help guide your attention:
+- API Calls Detected: {api_calls}
+- Crypto Keywords Detected: {crypto_keywords}
+
+INSTRUCTIONS:
+1. Identify all cryptographic operations present in the code.
+2. Trace the origin of each Key, IV, password, or Algorithm choice (e.g., look for hardcoded strings, static byte arrays, or weak PRNGs).
+3. Check each operation against known secure practices (e.g., avoid ECB mode, avoid MD5/SHA1 for hashing, use SecureRandom instead of java.util.Random, use at least 1000 iterations for PBKDF2).
+4. Reason step-by-step about whether any operation constitutes cryptographic misuse. 
+5. Provide your final JSON block with `verdict`, `confidence`, `explanation`, and `line_hint`.

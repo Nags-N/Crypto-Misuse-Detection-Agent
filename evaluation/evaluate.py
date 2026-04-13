@@ -19,7 +19,7 @@ from evaluation.metrics import compute_metrics
 from baselines.rule_based import predict_batch as rule_predict_batch
 
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.ERROR,
     format="%(asctime)s  %(levelname)-8s  %(message)s",
 )
 logger = logging.getLogger(__name__)
@@ -44,7 +44,7 @@ def print_results_table(results: dict) -> None:
         results: Dict mapping model_name → metrics dict.
     """
     header = f"{'Model':<30} {'Accuracy':>10} {'Precision':>10} {'Recall':>10} {'F1':>10}"
-    separator = "─" * len(header)
+    separator = "-" * len(header)
 
     print()
     print(separator)

@@ -1,0 +1,27 @@
+You are performing a "critic" pass on a previous security analysis to reduce false positives and hallucinations.
+
+=== ORIGINAL CODE ===
+{code_snippet}
+=== END ORIGINAL CODE ===
+
+=== PREVIOUS ANALYSIS RESULT ===
+Verdict: {previous_verdict}
+Confidence: {previous_confidence}
+Explanation: {previous_explanation}
+Line Hint: {previous_line_hint}
+=== END PREVIOUS ANALYSIS ===
+
+INSTRUCTIONS:
+1. Review the code again independently.
+2. Critique the Previous Analysis Result. Is it correct? Are there any false positives? For example, did the previous analysis merely perform a keyword match on a variable name without checking the actual function call? Was it a false negative?
+3. Output your reasoning.
+4. Output your updated, final verdict using the identical JSON block format:
+
+```json
+{
+  "verdict": "secure" | "insecure",
+  "confidence": "high" | "medium" | "low",
+  "explanation": "State if you agree or disagree, and your final reasoning summary.",
+  "line_hint": "Line number or specific snippet."
+}
+```

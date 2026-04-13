@@ -25,7 +25,7 @@ from evaluation.metrics import compute_metrics
 from evaluation.evaluate import print_results_table
 
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.ERROR,
     format="%(asctime)s  %(levelname)-8s  %(message)s",
 )
 logger = logging.getLogger(__name__)
