@@ -23,6 +23,7 @@ def main():
     parser.add_argument("--test-run", action="store_true", help="Run only the first 10 samples for quick testing")
     parser.add_argument("--dataset", type=str, default="data/processed/dataset.jsonl")
     parser.add_argument("--out", type=str, default="data/processed/agent_results.jsonl")
+    parser.add_argument("--quiet", action="store_true", help="Suppress live reasoning output")
     args = parser.parse_args()
 
     dataset_path = os.path.join(PROJECT_ROOT, args.dataset)
@@ -49,7 +50,9 @@ def main():
     if os.path.exists(out_path):
         os.remove(out_path)
 
-    for s in tqdm(samples):
+    iterator = tqdm(samples) if args.quiet else samples
+    
+    for i, s in enumerate(iterator):
         report = agent.analyze(s["code_snippet"])
         
         full_result = {
@@ -57,6 +60,28 @@ def main():
             "true_label": s["label"],
             "agent_report": report.to_dict()
         }
+        
+        if not args.quiet:
+            print("\n" + "="*64)
+            name = s.get("metadata", {}).get("name", "Unknown Case")
+            print(f"[{i+1}/{len(samples)}] {name}")
+            print("-" * 64)
+            lines = s['code_snippet'].split('\n')
+            snip = '\n'.join(lines[:5]) + ('\n  ...' if len(lines) > 5 else '')
+            print(f"CODE (snippet):\n  {snip}\n")
+            print(f"AGENT REASONING:\n{report.reasoning_trace}\n")
+            
+            finding = report.findings[-1] if report.findings else {}
+            verdict = finding.get("verdict", "UNKNOWN").upper()
+            conf = finding.get("confidence", "UNKNOWN").upper()
+            expl = finding.get("explanation", "")
+            hint = finding.get("line_hint", "")
+            
+            print(f"VERDICT: {verdict}  |  Confidence: {conf}")
+            print(f"EXPLANATION: {expl}")
+            if hint:
+                print(f"LINE HINT: {hint}")
+            print("="*64 + "\n")
         
         with open(out_path, "a", encoding="utf-8") as f:
             f.write(json.dumps(full_result, ensure_ascii=False) + "\n")

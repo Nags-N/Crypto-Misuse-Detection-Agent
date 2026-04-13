@@ -10,7 +10,7 @@ llm:
   max_retries: 5
 
 agent:
-  use_verifier: false
+  use_verifier: true
   verifier_threshold: 0.7
   max_features_in_prompt: 10
 
