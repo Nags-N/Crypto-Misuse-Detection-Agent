@@ -1,0 +1,31 @@
+.panel-layout {
+  display: flex;
+  height: calc(100vh - 60px); /* Minus header */
+  width: 100%;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.left-panel {
+  width: 240px;
+  min-width: 240px;
+  background: var(--bg-secondary);
+  border-right: var(--border-subtle);
+}
+
+.center-panel {
+  flex-grow: 1;
+  min-width: 400px;
+  background: var(--bg-primary);
+}
+
+.right-panel {
+  width: 360px;
+  min-width: 360px;
+  background: var(--bg-secondary);
+  border-left: var(--border-subtle);
+}

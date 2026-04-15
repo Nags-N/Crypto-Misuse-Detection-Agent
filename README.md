@@ -96,6 +96,18 @@ python scripts/compare_baselines.py
 
 ---
 
+## 🌐 Web UI Dashboard (New)
+
+The project now includes a beautiful, React-based dashboard for interactive analysis:
+
+**To run the entire application (Backend + Frontend) in one command:**
+*   **Windows**: Simply double-click `run.bat` or run it from the terminal.
+*   **Cross Platform**: Execute `python start_dashboard.py` in your terminal.
+
+The dashboard will automatically open the FastAPI backend and serve the Vite frontend on `http://localhost:5173`.
+
+---
+
 ## 🧪 Phase 2: Agentic AI Features
 
 Unlike simple scanners, the Agentic AI in this project provides:
